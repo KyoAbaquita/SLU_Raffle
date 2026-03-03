@@ -1,0 +1,89 @@
+/* ═══════════════════════════════════════════════════════════════════
+   BASE — Design Tokens, Reset & Body
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Design Tokens ─────────────────────────────────────────────── */
+:root {
+    --red: #e50914;
+    --dark-red: #b30000;
+    --deep-red: #1a0000;
+    --black: #080810;
+    --surface: #0d0d18;
+    --surface-2: #12121f;
+    --surface-3: #1a1a2a;
+    --border: rgba(255, 255, 255, 0.08);
+    --border-red: rgba(229, 9, 20, 0.4);
+    --text: #f0f0f0;
+    --text-muted: rgba(255, 255, 255, 0.45);
+    --gold: #f5a623;
+
+    --radius-sm: 8px;
+    --radius-md: 14px;
+    --radius-lg: 20px;
+    --radius-xl: 28px;
+    --radius-pill: 9999px;
+
+    --glow-red: 0 0 40px rgba(229, 9, 20, 0.3);
+    --glow-red-sm: 0 0 16px rgba(229, 9, 20, 0.25);
+    --shadow-card: 0 30px 80px rgba(0, 0, 0, 0.8), 0 8px 24px rgba(0, 0, 0, 0.5);
+    --shadow-btn: 0 4px 14px rgba(0, 0, 0, 0.4);
+
+    --transition: all 0.22s ease;
+    --font: 'Inter', system-ui, sans-serif;
+}
+
+/* ── Reset ──────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font);
+    background: url('../images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+    min-height: 100svh;
+    color: var(--text);
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 16px;
+    overflow-x: hidden;
+}
+
+/* dark overlay so text always reads over the photo */
+body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    /* Create a deep red/black radial that pulses */
+    background: radial-gradient(circle at 50% 50%, rgba(140, 0, 10, 0.45) 0%, rgba(8, 8, 16, 0.85) 80%);
+    background-size: 200% 200%;
+    z-index: 0;
+    pointer-events: none;
+    animation: liveBackground 15s ease-in-out infinite alternate;
+}
+
+@keyframes liveBackground {
+    0% {
+        background-position: 0% 50%;
+        opacity: 0.8;
+    }
+
+    50% {
+        background-position: 100% 50%;
+        opacity: 1;
+    }
+
+    100% {
+        background-position: 0% 50%;
+        opacity: 0.8;
+    }
+}
