@@ -124,8 +124,8 @@ function startRoulette(pool, duration, callback, forcedWinner) {
 
         if (typeof confetti === 'function') {
             confetti({
-                particleCount: 200,
-                spread: 10,
+                particleCount: 500,
+                spread: 100,
                 origin: { y: 0.6 },
                 colors: ['#FFE400', '#FF0000', '#FFFFFF', '#00FFF0']
             });
