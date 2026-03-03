@@ -21,6 +21,12 @@ function loadPrizesFromStorage() {
             prizeList.forEach(p => {
                 if (typeof p.selected === 'undefined') p.selected = false;
             });
+            // Auto-select first prize if none are currently selected
+            const hasSelection = prizeList.some(p => p.selected);
+            if (!hasSelection && prizeList.length > 0) {
+                prizeList[0].selected = true;
+                savePrizesToStorage();
+            }
             renderPrizeList();
         }
     } catch (e) {

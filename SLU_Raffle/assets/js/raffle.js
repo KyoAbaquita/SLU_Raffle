@@ -59,6 +59,11 @@ function startRaffle() {
 
     const winnerCount = parseInt(document.getElementById("winnerCountInput").value);
 
+    if (winnerCount > drawPool.length) {
+        alert(`Not enough participants! You need at least ${winnerCount} participant(s) but only have ${drawPool.length}.`);
+        return;
+    }
+
     // Safety check against empty/NaN timer input. Fallback to 20s if invalid.
     const parsedTimer = parseInt(timerInput.value);
     const timePerWinner = isNaN(parsedTimer) ? 20000 : Math.max(parsedTimer * 1000, 2000);

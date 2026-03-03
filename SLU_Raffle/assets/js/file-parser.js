@@ -33,7 +33,7 @@ function parseExcel(data) {
         if (!row[0]) return;
         const name = String(row[0]).trim();
         const department = row[1] ? String(row[1]).trim() : "";
-        if (name && !participants.some(p => p.name === name)) {
+        if (name && !participants.some(p => p.name.toLowerCase() === name.toLowerCase())) {
             participants.push({ name, department });
         }
     });
@@ -51,7 +51,7 @@ function parseWord(data) {
             const names = result.value.split(/\r?\n/).map(line => line.trim()).filter(line => line !== "");
 
             names.forEach(name => {
-                if (name && !participants.some(p => p.name === name)) {
+                if (name && !participants.some(p => p.name.toLowerCase() === name.toLowerCase())) {
                     participants.push({ name, department: "" });
                 }
             });

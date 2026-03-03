@@ -1,5 +1,11 @@
 // ─── Participant Table ───────────────────────────────────────────────────────
 
+function updateParticipantWarning() {
+    const warning = document.getElementById('participantWarning');
+    if (!warning) return;
+    warning.style.display = participants.length === 0 ? '' : 'none';
+}
+
 function updateParticipantTable() {
     const tableBody = document.getElementById("participantList");
     tableBody.innerHTML = "";
@@ -18,6 +24,7 @@ function updateParticipantTable() {
                 `;
         tableBody.appendChild(row);
     });
+    updateParticipantWarning();
 }
 
 function editParticipant(index) {
@@ -94,6 +101,7 @@ function removeAll() {
         document.getElementById("count").textContent = "0";
         updateParticipantTable();
         populateDepartmentFilter();
+        updateParticipantWarning();
     }
 }
 
@@ -157,6 +165,15 @@ function addParticipant(event) {
     const name = nameInput.value.trim();
     if (name === "") return;
 
+    // Duplicate detection — case-insensitive
+    const isDuplicate = participants.some(p =>
+        (typeof p === 'object' ? p.name : p).toLowerCase() === name.toLowerCase()
+    );
+    if (isDuplicate) {
+        alert(`"${name}" is already in the participant list!`);
+        return;
+    }
+
     const dept = deptInput ? deptInput.value.trim() : "";
 
     const newParticipant = {
@@ -177,6 +194,7 @@ function addParticipant(event) {
 
     populateDepartmentFilter();
     updateParticipantTable();
+    updateParticipantWarning();
 
     // Clear inputs and hide modal
     nameInput.value = '';

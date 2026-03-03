@@ -2,8 +2,19 @@
 
 function saveToHistory(winners, prize) {
     const history = JSON.parse(localStorage.getItem("raffleHistory")) || [];
+    const now = new Date();
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const month = months[now.getMonth()];
+    const day = String(now.getDate()).padStart(2, '0');
+    const year = now.getFullYear();
+    let hours = now.getHours();
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+    const ampm = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12 || 12;
+    const formattedDate = `${month} ${day}, ${year} — ${hours}:${minutes} ${ampm}`;
+
     const newEntry = {
-        date: new Date().toLocaleString(),
+        date: formattedDate,
         winners: winners,
         prize: prize
     };

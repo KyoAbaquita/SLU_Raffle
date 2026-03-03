@@ -133,6 +133,8 @@
             <div class="participant-count">
                 <span class="count-label">Participants</span>
                 <span class="count-value" id="count">0</span>
+                <span class="participant-warning" id="participantWarning" style="display:none;">⚠️ No participants
+                    loaded</span>
             </div>
             <div class="participant-actions">
                 <button class="bar-btn" data-bs-toggle="modal" data-bs-target="#participantsModal">
@@ -154,7 +156,8 @@
         <div class="action-bar">
             <button class="action-btn action-btn--ghost" onclick="removeAll()">Remove All</button>
             <button class="action-btn action-btn--primary" onclick="startRaffle()">🎰 Start Raffle</button>
-            <button class="action-btn action-btn--ghost" onclick="resetRaffle()">Reset</button>
+            <button class="action-btn action-btn--ghost" data-bs-toggle="modal"
+                data-bs-target="#resetConfirmModal">Reset</button>
         </div>
 
     </div>
@@ -430,6 +433,33 @@
                         data-bs-dismiss="modal">Cancel</button>
                     <button type="submit" form="editPrizeForm" class="action-btn action-btn--primary btn-sm">Save
                         Changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ══ Modal: Reset Confirmation ══ -->
+    <div class="modal fade" id="resetConfirmModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">⚠️ Reset Everything?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body" style="text-align:center; padding: 24px 28px;">
+                    <p style="color: var(--text-muted); font-size:0.95rem; margin:0;">
+                        This will clear <strong style="color:#fff;">all participants, prizes, and winners</strong>.<br>
+                        This action <strong style="color: var(--red);">cannot be undone</strong>.
+                    </p>
+                </div>
+                <div class="modal-footer" style="justify-content: center; gap: 12px;">
+                    <button type="button" class="action-btn action-btn--ghost btn-sm"
+                        data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="action-btn btn-sm" id="confirmResetBtn"
+                        style="background:linear-gradient(135deg,#e50914,#a0000a); color:#fff; border:none;"
+                        onclick="resetRaffle(); bootstrap.Modal.getInstance(document.getElementById('resetConfirmModal')).hide();">
+                        🗑 Yes, Reset All
+                    </button>
                 </div>
             </div>
         </div>
