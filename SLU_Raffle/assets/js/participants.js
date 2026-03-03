@@ -170,7 +170,7 @@ function addParticipant(event) {
         (typeof p === 'object' ? p.name : p).toLowerCase() === name.toLowerCase()
     );
     if (isDuplicate) {
-        alert(`"${name}" is already in the participant list!`);
+        showToast(`"${name}" is already in the participant list!`, 'warning');
         return;
     }
 

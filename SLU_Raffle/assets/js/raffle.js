@@ -10,13 +10,13 @@ function startRaffle() {
     if (prizeList.length > 0) {
         activePrizes = getSelectedPrizes();
         if (activePrizes.length === 0) {
-            alert("Tap a prize in the Prizes modal to select it first!");
+            showToast("Tap a prize in the Prizes modal to select it first!", 'warning');
             return;
         }
     } else {
         const singleName = prizeInput.value.trim();
         if (!singleName) {
-            alert("Please set a prize before starting the raffle!");
+            showToast("Please set a prize before starting the raffle!", 'warning');
             return;
         }
         activePrizes = [{ name: singleName, image: prizeImage || "" }];
@@ -53,14 +53,14 @@ function startRaffle() {
     }
 
     if (drawPool.length === 0) {
-        alert("Add participants first!");
+        showToast("Add participants first!", 'warning');
         return;
     }
 
     const winnerCount = parseInt(document.getElementById("winnerCountInput").value);
 
     if (winnerCount > drawPool.length) {
-        alert(`Not enough participants! You need at least ${winnerCount} participant(s) but only have ${drawPool.length}.`);
+        showToast(`Not enough participants! You need at least ${winnerCount} participant(s) but only have ${drawPool.length}.`, 'error');
         return;
     }
 

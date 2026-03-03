@@ -142,7 +142,7 @@ function clearHistory() {
 function restoreWinners() {
     const history = JSON.parse(localStorage.getItem("raffleHistory")) || [];
     if (history.length === 0) {
-        alert("No winners found in history to restore.");
+        showToast("No winners found in history to restore.", 'info');
         return;
     }
 
@@ -174,8 +174,8 @@ function restoreWinners() {
             updateParticipantTable();
         }
 
-        alert(`Successfully restored ${restoredCount} winner(s) back to the participant pool!`);
+        showToast(`Successfully restored ${restoredCount} winner(s) back to the participant pool!`, 'success');
     } else {
-        alert("All previous winners are already in the participant pool.");
+        showToast("All previous winners are already in the participant pool.", 'info');
     }
 }

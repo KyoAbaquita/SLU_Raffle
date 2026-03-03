@@ -62,6 +62,6 @@ function parseWord(data) {
             updateParticipantTable();
         })
         .catch(function (err) {
-            alert("Error reading Word file: " + err);
+            showToast("Error reading Word file: " + err, 'error');
         });
 }

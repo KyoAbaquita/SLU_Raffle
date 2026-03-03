@@ -98,7 +98,7 @@ function addPrize() {
     const prizeName = nameInput.value.trim();
 
     if (!prizeName) {
-        alert("Enter a prize name first!");
+        showToast("Enter a prize name first!", 'warning');
         return;
     }
 
