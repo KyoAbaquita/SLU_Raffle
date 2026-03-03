@@ -14,7 +14,11 @@ function startRaffle() {
             return;
         }
     } else {
-        const singleName = prizeInput.value.trim() || "No prize set";
+        const singleName = prizeInput.value.trim();
+        if (!singleName) {
+            alert("Please set a prize before starting the raffle!");
+            return;
+        }
         activePrizes = [{ name: singleName, image: prizeImage || "" }];
     }
 
